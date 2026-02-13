@@ -793,6 +793,74 @@ body {
   text-shadow: 0 0 8px rgba(255,82,82,0.4);
 }
 
+/* Hint ice cube */
+.hint-cube {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.hint-cube:hover { transform: scale(1.1); }
+
+.hint-cube .cube-icon {
+  font-size: 2.6em;
+  filter: drop-shadow(0 0 8px rgba(0,229,255,0.5));
+  animation: cubeWobble 2.5s ease-in-out infinite;
+}
+
+@keyframes cubeWobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-6deg); }
+  75% { transform: rotate(6deg); }
+}
+
+.hint-cube .cube-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.7em;
+  color: #80DEEA;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.hint-bubble {
+  margin-top: 14px;
+  background: rgba(0,188,212,0.12);
+  border: 2px solid #00BCD4;
+  border-radius: 14px;
+  padding: 14px 18px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: hintPop 0.4s ease;
+  display: none;
+}
+
+.hint-bubble.show { display: block; }
+
+@keyframes hintPop {
+  from { opacity: 0; transform: scale(0.8) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.hint-cheat {
+  font-family: 'Fredoka One', cursive;
+  color: #FF5252;
+  font-size: 1.05em;
+  text-shadow: 0 0 8px rgba(255,82,82,0.4);
+  margin-bottom: 8px;
+}
+
+.hint-text {
+  font-family: 'Courier New', monospace;
+  color: #B2FF59;
+  font-size: 0.85em;
+  line-height: 1.5;
+  text-shadow: 0 0 6px rgba(178,255,89,0.3);
+}
+
 /* Mission reveal */
 .mission-reveal {
   display: none;
@@ -1243,6 +1311,14 @@ body {
                    onkeydown="if(event.key==='Enter') checkSecret()">
             <button class="login-btn" onclick="checkSecret()">ACCESS FILES</button>
             <div class="login-error" id="loginError"></div>
+            <div class="hint-cube" id="hintCube" onclick="revealHint()">
+              <span class="cube-icon">&#129482;</span>
+              <span class="cube-label">NEED A HINT?</span>
+            </div>
+            <div class="hint-bubble" id="hintBubble">
+              <div class="hint-cheat">CHEAT! You asked for a hint!</div>
+              <div class="hint-text">> Okay fine... it's a 4-digit number that refers to a very significant date for us. Think DDMM.</div>
+            </div>
           </div>
         </div>
 
@@ -1586,6 +1662,14 @@ function penguinWave() {
       setTimeout(() => p.remove(), 4500);
     }, i * 100);
   }
+}
+
+// ===== HINT =====
+function revealHint() {
+  const cube = document.getElementById('hintCube');
+  const bubble = document.getElementById('hintBubble');
+  cube.style.display = 'none';
+  bubble.classList.add('show');
 }
 
 // ===== SECRET LOGIN =====
