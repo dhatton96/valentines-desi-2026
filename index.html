@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danny & Desi's Club Penguin Valentine's</title>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0099FF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Danny & Desi">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Bubblegum Sans', 'Fredoka One', sans-serif;
+  background: linear-gradient(180deg, #0099FF 0%, #66CCFF 40%, #CCE5FF 70%, #FFFFFF 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  color: #1a1a2e;
+}
+
+/* ===== SNOWFALL ===== */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: #fff;
+  font-size: 1.2em;
+  pointer-events: none;
+  z-index: 9999;
+  animation: snowfall linear infinite;
+  text-shadow: 0 0 4px rgba(255,255,255,0.8);
+}
+
+@keyframes snowfall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
+}
+
+/* ===== SNOWY GROUND ===== */
+.snow-ground {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: radial-gradient(ellipse at 50% 100%, #fff 0%, #e8f4ff 60%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.snow-hills {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.snow-hills::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 40%;
+  height: 80px;
+  background: radial-gradient(ellipse at 50% 100%, #ffffff 0%, #f0f8ff 70%, transparent 100%);
+  border-radius: 50% 50% 0 0;
+}
+
+.snow-hills::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -5%;
+  width: 50%;
+  height: 100px;
+  background: radial-gradient(ellipse at 50% 100%, #ffffff 0%, #f0f8ff 70%, transparent 100%);
+  border-radius: 50% 50% 0 0;
+}
+
+/* ===== CLUB PENGUIN AVATARS ===== */
+.penguin-avatar {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 72px;
+}
+
+.penguin-avatar.small { width: 45px; height: 54px; }
+.penguin-avatar.large { width: 80px; height: 96px; }
+.penguin-avatar.xlarge { width: 100px; height: 120px; }
+
+.penguin-avatar svg { width: 100%; height: 100%; }
+
+/* ===== COUPLE CONTAINER ===== */
+.couple-scene {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+}
+
+.couple-scene .penguin-avatar:first-child {
+  transform: scaleX(-1);
+}
+
+/* Heart bubble animation between the couple */
+.heart-bubble {
+  position: absolute;
+  animation: heartFloat 2.5s ease-in-out infinite;
+  font-size: 1.2em;
+  z-index: 5;
+}
+
+@keyframes heartFloat {
+  0% { opacity: 0; transform: translateY(0) scale(0.5); }
+  20% { opacity: 1; transform: translateY(-8px) scale(1); }
+  80% { opacity: 1; transform: translateY(-30px) scale(1.1); }
+  100% { opacity: 0; transform: translateY(-45px) scale(0.6); }
+}
+
+/* Holding hands / kiss lean */
+.couple-lean {
+  animation: leanIn 3s ease-in-out infinite;
+}
+
+.couple-lean.left { transform-origin: bottom right; }
+.couple-lean.right { transform-origin: bottom left; }
+
+@keyframes leanIn {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@keyframes leanInReverse {
+  0%, 100% { transform: rotate(0deg) scaleX(-1); }
+  50% { transform: rotate(-4deg) scaleX(-1); }
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  padding: 30px 20px 5px;
+  position: relative;
+  z-index: 1;
+}
+
+.header h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.8em;
+  color: #fff;
+  text-shadow:
+    3px 3px 0 #005CBB,
+    -1px -1px 0 #005CBB,
+    1px -1px 0 #005CBB,
+    -1px 1px 0 #005CBB,
+    0 4px 8px rgba(0,0,0,0.2);
+  letter-spacing: 2px;
+}
+
+.header .subtitle {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 1.2em;
+  color: #FFE066;
+  text-shadow: 1px 1px 0 #B8860B;
+  margin-top: 4px;
+}
+
+/* Header couple */
+.header-couple {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.header-couple .penguin-avatar:first-child {
+  animation: leanInReverse 3s ease-in-out infinite;
+}
+
+.header-couple .penguin-avatar:last-child {
+  animation: leanIn 3s ease-in-out infinite;
+}
+
+.header-couple .heart-bubbles {
+  position: absolute;
+  top: -10px;
+  display: flex;
+  gap: 8px;
+}
+
+.header-couple .heart-bubbles span {
+  animation: heartFloat 2.5s ease-in-out infinite;
+}
+
+.header-couple .heart-bubbles span:nth-child(2) { animation-delay: 0.8s; }
+.header-couple .heart-bubbles span:nth-child(3) { animation-delay: 1.6s; }
+
+.header-names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.header-names .name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1em;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+}
+
+.name-danny { color: #40C4FF; }
+.name-desi { color: #FF6B6B; }
+.name-heart { color: #FF4081; font-size: 1.2em; }
+
+/* ===== TAB NAV ===== */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 20px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.05em;
+  padding: 12px 28px;
+  border: 4px solid #005CBB;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #3DB8FF 0%, #0088EE 100%);
+  color: #fff;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 0 #004A99, 0 6px 12px rgba(0,0,0,0.15);
+  transition: all 0.15s ease;
+  position: relative;
+  top: 0;
+}
+
+.tab-btn:hover {
+  top: -2px;
+  box-shadow: 0 6px 0 #004A99, 0 8px 16px rgba(0,0,0,0.2);
+  background: linear-gradient(180deg, #55C8FF 0%, #22AAFF 100%);
+}
+
+.tab-btn:active {
+  top: 4px;
+  box-shadow: 0 0px 0 #004A99, 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.tab-btn.active {
+  background: linear-gradient(180deg, #FFD700 0%, #FFB800 100%);
+  border-color: #B8860B;
+  color: #5C3D00;
+  box-shadow: 0 4px 0 #997300, 0 6px 12px rgba(0,0,0,0.15);
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.3);
+}
+
+/* ===== MAIN CONTENT ===== */
+.tab-content {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  animation: fadeSlideIn 0.4s ease;
+}
+
+.tab-content.active { display: block; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== TAB 1: MEMORIES MAP ===== */
+.map-container {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%);
+  border: 5px solid #5D4037;
+  border-radius: 24px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2), inset 0 2px 8px rgba(255,255,255,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.map-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.map-header {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+}
+
+.map-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.6em;
+  color: #3E2723;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+  margin-bottom: 10px;
+}
+
+.map-penguins {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  position: relative;
+}
+
+.map-penguins .heart-bubbles-row {
+  position: absolute;
+  top: -16px;
+  display: flex;
+  gap: 6px;
+}
+
+.map-penguins .heart-bubbles-row span {
+  font-size: 0.9em;
+  animation: heartFloat 2s ease-in-out infinite;
+}
+
+.map-penguins .heart-bubbles-row span:nth-child(2) { animation-delay: 0.7s; }
+
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.map-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  animation: waddle 1.5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.map-icon:hover {
+  transform: scale(1.15);
+  animation: none;
+}
+
+@keyframes waddle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg) translateY(-3px); }
+  75% { transform: rotate(5deg) translateY(-3px); }
+}
+
+.map-icon .icon-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px solid #5D4037;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4em;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: box-shadow 0.2s ease;
+}
+
+.map-icon:hover .icon-circle {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.map-icon .icon-label {
+  margin-top: 8px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.85em;
+  color: #3E2723;
+  text-align: center;
+  background: rgba(255,255,255,0.7);
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+/* ===== POSTCARD MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.show { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.postcard {
+  width: 90%;
+  max-width: 480px;
+  background: #FFFDE7;
+  border: 5px solid #D4A017;
+  border-radius: 18px;
+  padding: 0;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  position: relative;
+  animation: postcardIn 0.4s ease;
+  overflow: hidden;
+}
+
+@keyframes postcardIn {
+  from { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+  to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.postcard-header {
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  padding: 16px 20px;
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+  border-bottom: 4px solid #D4A017;
+}
+
+.postcard-stamp {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 52px;
+  height: 58px;
+  background: #FFB6C1;
+  border: 3px dashed #D4A017;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6em;
+  transform: rotate(6deg);
+}
+
+.postcard-body {
+  padding: 24px;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 1.15em;
+  line-height: 1.6;
+  color: #4A3728;
+  text-align: center;
+  min-height: 100px;
+  background-image:
+    repeating-linear-gradient(transparent, transparent 31px, #E0D5C1 31px, #E0D5C1 32px);
+  background-position: 0 8px;
+}
+
+.postcard-penguins {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 0 0;
+}
+
+.postcard-footer {
+  padding: 8px 20px 16px;
+  text-align: center;
+}
+
+.postcard-close {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.95em;
+  padding: 10px 30px;
+  border: 3px solid #B8860B;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #FFD700, #FFB800);
+  color: #5C3D00;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #997300;
+  transition: all 0.15s ease;
+}
+
+.postcard-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #997300;
+}
+
+.postcard-close:active {
+  transform: translateY(2px);
+  box-shadow: 0 0px 0 #997300;
+}
+
+/* ===== TAB 2: 12 SPRING ROAD ===== */
+.igloo-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.igloo-scene {
+  background: linear-gradient(180deg, #B3E5FC 0%, #E1F5FE 60%, #FFFFFF 100%);
+  border: 5px solid #0288D1;
+  border-radius: 24px;
+  padding: 40px 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15), inset 0 2px 8px rgba(255,255,255,0.5);
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.igloo-art {
+  font-size: 5em;
+  margin-bottom: 6px;
+  animation: iglooBounce 3s ease-in-out infinite;
+}
+
+@keyframes iglooBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.igloo-couple {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.igloo-couple .penguin-avatar:first-child {
+  animation: leanInReverse 3s ease-in-out infinite;
+}
+
+.igloo-couple .penguin-avatar:last-child {
+  animation: leanIn 3s ease-in-out infinite;
+}
+
+.igloo-couple .igloo-hearts {
+  position: absolute;
+  top: -18px;
+  display: flex;
+  gap: 6px;
+}
+
+.igloo-couple .igloo-hearts span {
+  animation: heartFloat 2s ease-in-out infinite;
+}
+
+.igloo-couple .igloo-hearts span:nth-child(2) { animation-delay: 0.6s; }
+.igloo-couple .igloo-hearts span:nth-child(3) { animation-delay: 1.2s; }
+
+.igloo-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.8em;
+  color: #01579B;
+  margin-bottom: 8px;
+}
+
+.igloo-subtitle {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 1.1em;
+  color: #0277BD;
+  margin-bottom: 30px;
+}
+
+.gizmo-shelf {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.gizmo-item {
+  background: rgba(255,255,255,0.7);
+  border: 3px solid #0288D1;
+  border-radius: 16px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: waddle 2s ease-in-out infinite;
+}
+
+.gizmo-item:hover {
+  transform: scale(1.08);
+  animation: none;
+  background: rgba(255,255,255,0.9);
+}
+
+.gizmo-item .gizmo-icon { font-size: 2em; }
+.gizmo-item .gizmo-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.8em;
+  color: #01579B;
+  margin-top: 6px;
+}
+
+.floating-heart {
+  position: fixed;
+  font-size: 1.8em;
+  pointer-events: none;
+  z-index: 9998;
+  animation: floatUp 3s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+  50% { opacity: 1; transform: translateY(-40vh) scale(1.3) rotate(20deg); }
+  100% { opacity: 0; transform: translateY(-85vh) scale(0.5) rotate(-15deg); }
+}
+
+/* ===== TAB 3: SECRET REVEAL (PSA TERMINAL) ===== */
+.psa-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.terminal {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border: 4px solid #00BCD4;
+  border-radius: 20px;
+  padding: 0;
+  box-shadow:
+    0 0 20px rgba(0,188,212,0.3),
+    0 8px 24px rgba(0,0,0,0.3),
+    inset 0 0 60px rgba(0,188,212,0.05);
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: linear-gradient(90deg, #00BCD4, #0097A7);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.2);
+}
+
+.terminal-dot.red { background: #FF5252; }
+.terminal-dot.yellow { background: #FFD740; }
+.terminal-dot.green { background: #69F0AE; }
+
+.terminal-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.95em;
+  color: #1a1a2e;
+  margin-left: 8px;
+}
+
+.terminal-body { padding: 30px; }
+
+.terminal-text {
+  font-family: 'Courier New', monospace;
+  color: #00E676;
+  font-size: 0.95em;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.terminal-text .blink { animation: blink 1s step-end infinite; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.psa-badge {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.psa-badge .badge-icon {
+  font-size: 4em;
+  display: block;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 0 10px rgba(0,188,212,0.5));
+}
+
+.psa-badge .badge-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4em;
+  color: #00E5FF;
+  text-shadow: 0 0 10px rgba(0,229,255,0.5);
+  letter-spacing: 4px;
+}
+
+/* Agent penguin silhouettes in terminal */
+.psa-agents {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.psa-agents .penguin-avatar { filter: drop-shadow(0 0 6px rgba(0,229,255,0.4)); }
+
+.login-form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-input {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1em;
+  padding: 12px 20px;
+  border: 3px solid #00BCD4;
+  border-radius: 12px;
+  background: rgba(0,188,212,0.1);
+  color: #00E5FF;
+  text-align: center;
+  width: 240px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.login-input::placeholder { color: rgba(0,229,255,0.4); }
+
+.login-input:focus {
+  border-color: #00E5FF;
+  box-shadow: 0 0 16px rgba(0,229,255,0.3);
+  background: rgba(0,188,212,0.15);
+}
+
+.login-btn {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1em;
+  padding: 12px 32px;
+  border: 3px solid #00BCD4;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #00BCD4 0%, #0097A7 100%);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #00838F, 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.15s ease;
+  margin-top: 14px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 0;
+}
+
+.login-btn:hover {
+  top: -2px;
+  box-shadow: 0 5px 0 #00838F, 0 7px 14px rgba(0,0,0,0.25);
+}
+
+.login-btn:active {
+  top: 3px;
+  box-shadow: 0 0px 0 #00838F;
+}
+
+.login-error {
+  font-family: 'Courier New', monospace;
+  color: #FF5252;
+  font-size: 0.9em;
+  margin-top: 12px;
+  min-height: 1.2em;
+  text-shadow: 0 0 8px rgba(255,82,82,0.4);
+}
+
+/* Mission reveal */
+.mission-reveal {
+  display: none;
+  animation: missionIn 0.8s ease;
+}
+
+.mission-reveal.show { display: block; }
+
+@keyframes missionIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.mission-card {
+  background: rgba(0,188,212,0.1);
+  border: 2px solid #00BCD4;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.mission-card h3 {
+  font-family: 'Fredoka One', cursive;
+  color: #00E5FF;
+  font-size: 1.3em;
+  text-align: center;
+  margin-bottom: 18px;
+  text-shadow: 0 0 12px rgba(0,229,255,0.4);
+  letter-spacing: 2px;
+}
+
+.mission-line {
+  font-family: 'Courier New', monospace;
+  color: #B2FF59;
+  font-size: 1em;
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-left: 3px solid #00E676;
+  animation: typeIn 0.5s ease;
+}
+
+.mission-line span {
+  color: #FFD740;
+  font-weight: bold;
+}
+
+@keyframes typeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.mission-line:nth-child(2) { animation-delay: 0.2s; }
+.mission-line:nth-child(3) { animation-delay: 0.4s; }
+
+.mission-couple {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.mission-couple .penguin-avatar:first-child { animation: leanInReverse 2.5s ease-in-out infinite; }
+.mission-couple .penguin-avatar:last-child { animation: leanIn 2.5s ease-in-out infinite; }
+
+.mission-couple .kiss-heart {
+  position: absolute;
+  top: -8px;
+  font-size: 1.4em;
+  animation: heartFloat 2s ease-in-out infinite;
+}
+
+/* ===== CONFETTI ===== */
+.confetti-piece {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+  100% { opacity: 0; transform: translateY(100vh) rotate(720deg) scale(0.3); }
+}
+
+/* ===== PENGUIN FOOTER ===== */
+.penguin-footer {
+  text-align: center;
+  padding: 30px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-couple {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+}
+
+.footer-couple .penguin-avatar:first-child { animation: leanInReverse 3s ease-in-out infinite; }
+.footer-couple .penguin-avatar:last-child { animation: leanIn 3s ease-in-out infinite; }
+
+.footer-couple .footer-hearts {
+  position: absolute;
+  top: -14px;
+  display: flex;
+  gap: 6px;
+}
+
+.footer-couple .footer-hearts span {
+  animation: heartFloat 2.5s ease-in-out infinite;
+}
+
+.footer-couple .footer-hearts span:nth-child(2) { animation-delay: 0.9s; }
+
+.footer-text {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 1.1em;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  margin-top: 8px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .header h1 { font-size: 1.9em; }
+  .tab-btn { padding: 10px 18px; font-size: 0.9em; }
+  .map-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 14px; }
+  .map-icon .icon-circle { width: 70px; height: 70px; font-size: 1.8em; }
+  .postcard { width: 95%; }
+  .igloo-art { font-size: 3.5em; }
+  .penguin-avatar.large { width: 60px; height: 72px; }
+  .penguin-avatar.xlarge { width: 70px; height: 84px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Snowy Ground -->
+<div class="snow-ground"></div>
+<div class="snow-hills"></div>
+
+<!-- Header -->
+<div class="header">
+  <h1>Danny & Desi's Valentine's</h1>
+  <div class="subtitle">A Special Island Just For Us</div>
+  <div class="header-couple">
+    <!-- Danny (blue) facing right -->
+    <div class="penguin-avatar large">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body -->
+        <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+        <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+        <!-- Head -->
+        <circle cx="50" cy="36" r="24" fill="#222"/>
+        <!-- Eyes -->
+        <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+        <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+        <circle cx="44" cy="33" r="3" fill="#111"/>
+        <circle cx="60" cy="33" r="3" fill="#111"/>
+        <circle cx="45" cy="31.5" r="1" fill="#fff"/>
+        <circle cx="61" cy="31.5" r="1" fill="#fff"/>
+        <!-- Beak -->
+        <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+        <!-- Blue hat -->
+        <ellipse cx="50" cy="20" rx="20" ry="8" fill="#1E88E5"/>
+        <rect x="30" y="14" width="40" height="8" rx="3" fill="#1E88E5"/>
+        <circle cx="50" cy="10" r="5" fill="#1565C0"/>
+        <!-- Flippers -->
+        <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+        <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+        <!-- Feet -->
+        <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <!-- Blue scarf -->
+        <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#42A5F5"/>
+      </svg>
+    </div>
+    <div class="heart-bubbles">
+      <span>&#128150;</span>
+      <span>&#128157;</span>
+      <span>&#128152;</span>
+    </div>
+    <!-- Desi (red) facing left -->
+    <div class="penguin-avatar large">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body -->
+        <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+        <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+        <!-- Head -->
+        <circle cx="50" cy="36" r="24" fill="#222"/>
+        <!-- Eyes with lashes -->
+        <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+        <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+        <circle cx="44" cy="33" r="3" fill="#111"/>
+        <circle cx="60" cy="33" r="3" fill="#111"/>
+        <circle cx="45" cy="31.5" r="1" fill="#fff"/>
+        <circle cx="61" cy="31.5" r="1" fill="#fff"/>
+        <!-- Eyelashes -->
+        <line x1="38" y1="27" x2="36" y2="24" stroke="#222" stroke-width="1.5"/>
+        <line x1="41" y1="26" x2="40" y2="23" stroke="#222" stroke-width="1.5"/>
+        <line x1="56" y1="26" x2="55" y2="23" stroke="#222" stroke-width="1.5"/>
+        <line x1="59" y1="27" x2="61" y2="24" stroke="#222" stroke-width="1.5"/>
+        <!-- Beak -->
+        <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+        <!-- Cute smile -->
+        <path d="M44 44 Q50 48 56 44" stroke="#FFB300" stroke-width="1.5" fill="none"/>
+        <!-- Red bow -->
+        <circle cx="34" cy="18" r="4" fill="#E53935"/>
+        <ellipse cx="26" cy="18" rx="8" ry="5" fill="#EF5350"/>
+        <ellipse cx="42" cy="18" rx="8" ry="5" fill="#EF5350"/>
+        <ellipse cx="26" cy="18" rx="6" ry="3.5" fill="#FF7043"/>
+        <ellipse cx="42" cy="18" rx="6" ry="3.5" fill="#FF7043"/>
+        <!-- Flippers -->
+        <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+        <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+        <!-- Feet -->
+        <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <!-- Red scarf -->
+        <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#EF5350"/>
+        <rect x="55" y="58" width="7" height="16" rx="3" fill="#EF5350" transform="rotate(15 58 62)"/>
+      </svg>
+    </div>
+  </div>
+  <div class="header-names">
+    <span class="name name-danny">Danny</span>
+    <span class="name-heart">&#10084;&#65039;</span>
+    <span class="name name-desi">Desi</span>
+  </div>
+</div>
+
+<!-- Tab Navigation -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('memories')">Memories Map</button>
+  <button class="tab-btn" onclick="switchTab('igloo')">12 Spring Road</button>
+  <button class="tab-btn" onclick="switchTab('secret')">Secret Reveal</button>
+</nav>
+
+<!-- ====== TAB 1: MEMORIES MAP ====== -->
+<div id="tab-memories" class="tab-content active">
+  <div class="map-container">
+    <div class="map-header">
+      <div class="map-title">Danny & Desi's Island of Memories</div>
+      <div class="map-penguins">
+        <!-- Danny mini -->
+        <div class="penguin-avatar small" style="transform: scaleX(-1);">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+            <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+            <circle cx="50" cy="36" r="24" fill="#222"/>
+            <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+            <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+            <circle cx="44" cy="33" r="3" fill="#111"/>
+            <circle cx="60" cy="33" r="3" fill="#111"/>
+            <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+            <ellipse cx="50" cy="20" rx="20" ry="8" fill="#1E88E5"/>
+            <rect x="30" y="14" width="40" height="8" rx="3" fill="#1E88E5"/>
+            <circle cx="50" cy="10" r="5" fill="#1565C0"/>
+            <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+            <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+            <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#42A5F5"/>
+          </svg>
+        </div>
+        <div class="heart-bubbles-row">
+          <span>&#128151;</span>
+          <span>&#128150;</span>
+        </div>
+        <!-- Desi mini -->
+        <div class="penguin-avatar small">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+            <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+            <circle cx="50" cy="36" r="24" fill="#222"/>
+            <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+            <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+            <circle cx="44" cy="33" r="3" fill="#111"/>
+            <circle cx="60" cy="33" r="3" fill="#111"/>
+            <line x1="38" y1="27" x2="36" y2="24" stroke="#222" stroke-width="1.5"/>
+            <line x1="41" y1="26" x2="40" y2="23" stroke="#222" stroke-width="1.5"/>
+            <line x1="56" y1="26" x2="55" y2="23" stroke="#222" stroke-width="1.5"/>
+            <line x1="59" y1="27" x2="61" y2="24" stroke="#222" stroke-width="1.5"/>
+            <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+            <circle cx="34" cy="18" r="4" fill="#E53935"/>
+            <ellipse cx="26" cy="18" rx="8" ry="5" fill="#EF5350"/>
+            <ellipse cx="42" cy="18" rx="8" ry="5" fill="#EF5350"/>
+            <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+            <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+            <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#EF5350"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="map-grid" id="mapGrid"></div>
+  </div>
+</div>
+
+<!-- ====== TAB 2: 12 SPRING ROAD ====== -->
+<div id="tab-igloo" class="tab-content">
+  <div class="igloo-container">
+    <div class="igloo-scene">
+      <div class="igloo-art">&#127969;</div>
+      <div class="igloo-couple">
+        <!-- Danny -->
+        <div class="penguin-avatar" style="transform: scaleX(-1);">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+            <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+            <circle cx="50" cy="36" r="24" fill="#222"/>
+            <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+            <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+            <circle cx="44" cy="33" r="3" fill="#111"/>
+            <circle cx="60" cy="33" r="3" fill="#111"/>
+            <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+            <ellipse cx="50" cy="20" rx="20" ry="8" fill="#1E88E5"/>
+            <rect x="30" y="14" width="40" height="8" rx="3" fill="#1E88E5"/>
+            <circle cx="50" cy="10" r="5" fill="#1565C0"/>
+            <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+            <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+            <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#42A5F5"/>
+          </svg>
+        </div>
+        <div class="igloo-hearts">
+          <span>&#128147;</span>
+          <span>&#128152;</span>
+          <span>&#128157;</span>
+        </div>
+        <!-- Desi -->
+        <div class="penguin-avatar">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+            <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+            <circle cx="50" cy="36" r="24" fill="#222"/>
+            <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+            <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+            <circle cx="44" cy="33" r="3" fill="#111"/>
+            <circle cx="60" cy="33" r="3" fill="#111"/>
+            <line x1="38" y1="27" x2="36" y2="24" stroke="#222" stroke-width="1.5"/>
+            <line x1="41" y1="26" x2="40" y2="23" stroke="#222" stroke-width="1.5"/>
+            <line x1="56" y1="26" x2="55" y2="23" stroke="#222" stroke-width="1.5"/>
+            <line x1="59" y1="27" x2="61" y2="24" stroke="#222" stroke-width="1.5"/>
+            <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+            <circle cx="34" cy="18" r="4" fill="#E53935"/>
+            <ellipse cx="26" cy="18" rx="8" ry="5" fill="#EF5350"/>
+            <ellipse cx="42" cy="18" rx="8" ry="5" fill="#EF5350"/>
+            <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+            <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+            <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+            <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#EF5350"/>
+            <rect x="55" y="58" width="7" height="16" rx="3" fill="#EF5350" transform="rotate(15 58 62)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="igloo-title">Welcome to 12 Spring Road!</div>
+      <div class="igloo-subtitle">Our little igloo for two... check out these gizmos!</div>
+
+      <div class="gizmo-shelf">
+        <div class="gizmo-item" onclick="showerHearts()" style="--delay: 0s;">
+          <div class="gizmo-icon">&#10084;&#65039;</div>
+          <div class="gizmo-label">Heart Shower</div>
+        </div>
+        <div class="gizmo-item" onclick="danceParty()" style="--delay: 0.3s;">
+          <div class="gizmo-icon">&#128131;</div>
+          <div class="gizmo-label">Dance Party</div>
+        </div>
+        <div class="gizmo-item" onclick="penguinWave()" style="--delay: 0.6s;">
+          <div class="gizmo-icon">&#128039;</div>
+          <div class="gizmo-label">Penguin Wave</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== TAB 3: SECRET REVEAL ====== -->
+<div id="tab-secret" class="tab-content">
+  <div class="psa-container">
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
+        <span class="terminal-title">P.S.A. SECURE TERMINAL v2.14</span>
+      </div>
+      <div class="terminal-body">
+        <div class="psa-badge">
+          <span class="badge-icon">&#128373;&#65039;</span>
+          <div class="badge-text">TOP SECRET</div>
+        </div>
+
+        <!-- Agent silhouettes -->
+        <div class="psa-agents">
+          <div class="penguin-avatar small" style="transform: scaleX(-1);">
+            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="78" rx="32" ry="36" fill="#0D47A1" opacity="0.7"/>
+              <ellipse cx="50" cy="80" rx="22" ry="28" fill="#1A237E" opacity="0.5"/>
+              <circle cx="50" cy="36" r="24" fill="#0D47A1" opacity="0.7"/>
+              <ellipse cx="42" cy="32" rx="6" ry="7" fill="#00E5FF" opacity="0.6"/>
+              <ellipse cx="58" cy="32" rx="6" ry="7" fill="#00E5FF" opacity="0.6"/>
+              <circle cx="44" cy="33" r="2.5" fill="#00E5FF"/>
+              <circle cx="60" cy="33" r="2.5" fill="#00E5FF"/>
+              <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300" opacity="0.6"/>
+              <ellipse cx="50" cy="20" rx="20" ry="8" fill="#0D47A1"/>
+              <rect x="30" y="14" width="40" height="8" rx="3" fill="#0D47A1"/>
+              <ellipse cx="18" cy="72" rx="10" ry="20" fill="#0D47A1" opacity="0.7" transform="rotate(-15 18 72)"/>
+              <ellipse cx="82" cy="72" rx="10" ry="20" fill="#0D47A1" opacity="0.7" transform="rotate(15 82 72)"/>
+            </svg>
+          </div>
+          <div class="penguin-avatar small">
+            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="78" rx="32" ry="36" fill="#B71C1C" opacity="0.7"/>
+              <ellipse cx="50" cy="80" rx="22" ry="28" fill="#4A148C" opacity="0.5"/>
+              <circle cx="50" cy="36" r="24" fill="#B71C1C" opacity="0.7"/>
+              <ellipse cx="42" cy="32" rx="6" ry="7" fill="#00E5FF" opacity="0.6"/>
+              <ellipse cx="58" cy="32" rx="6" ry="7" fill="#00E5FF" opacity="0.6"/>
+              <circle cx="44" cy="33" r="2.5" fill="#00E5FF"/>
+              <circle cx="60" cy="33" r="2.5" fill="#00E5FF"/>
+              <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300" opacity="0.6"/>
+              <circle cx="34" cy="18" r="4" fill="#B71C1C"/>
+              <ellipse cx="26" cy="18" rx="8" ry="5" fill="#C62828"/>
+              <ellipse cx="42" cy="18" rx="8" ry="5" fill="#C62828"/>
+              <ellipse cx="18" cy="72" rx="10" ry="20" fill="#B71C1C" opacity="0.7" transform="rotate(-15 18 72)"/>
+              <ellipse cx="82" cy="72" rx="10" ry="20" fill="#B71C1C" opacity="0.7" transform="rotate(15 82 72)"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginSection">
+          <div class="terminal-text">
+            > AGENTS DANNY & DESI: IDENTIFICATION REQUIRED<span class="blink">_</span><br>
+            > Enter the secret code to access classified mission files.
+          </div>
+          <div class="login-form">
+            <input type="text" class="login-input" id="secretInput"
+                   placeholder="Enter code..." autocomplete="off"
+                   onkeydown="if(event.key==='Enter') checkSecret()">
+            <button class="login-btn" onclick="checkSecret()">ACCESS FILES</button>
+            <div class="login-error" id="loginError"></div>
+          </div>
+        </div>
+
+        <!-- Mission Reveal -->
+        <div id="missionSection" class="mission-reveal">
+          <div class="terminal-text">
+            > ACCESS GRANTED &#9989;<br>
+            > Decrypting classified files...<br>
+            > MISSION BRIEFING LOADED:
+          </div>
+          <div class="mission-card">
+            <h3>&#128196; MISSION ACCOMPLISHED</h3>
+            <div class="mission-line"><span>MISSION:</span> We are going to the cinema to watch The Housemaid.</div>
+            <div class="mission-line"><span>STATUS:</span> It's a date! &#128150;</div>
+          </div>
+          <!-- Kissing penguins on reveal -->
+          <div class="mission-couple">
+            <div class="penguin-avatar" style="transform: scaleX(-1);">
+              <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+                <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+                <circle cx="50" cy="36" r="24" fill="#222"/>
+                <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+                <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+                <circle cx="44" cy="33" r="3" fill="#111"/>
+                <circle cx="60" cy="33" r="3" fill="#111"/>
+                <circle cx="45" cy="31.5" r="1" fill="#fff"/>
+                <circle cx="61" cy="31.5" r="1" fill="#fff"/>
+                <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+                <ellipse cx="50" cy="20" rx="20" ry="8" fill="#1E88E5"/>
+                <rect x="30" y="14" width="40" height="8" rx="3" fill="#1E88E5"/>
+                <circle cx="50" cy="10" r="5" fill="#1565C0"/>
+                <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+                <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+                <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+                <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+                <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#42A5F5"/>
+              </svg>
+            </div>
+            <span class="kiss-heart">&#128140;</span>
+            <div class="penguin-avatar">
+              <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+                <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+                <circle cx="50" cy="36" r="24" fill="#222"/>
+                <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+                <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+                <circle cx="44" cy="33" r="3" fill="#111"/>
+                <circle cx="60" cy="33" r="3" fill="#111"/>
+                <circle cx="45" cy="31.5" r="1" fill="#fff"/>
+                <circle cx="61" cy="31.5" r="1" fill="#fff"/>
+                <line x1="38" y1="27" x2="36" y2="24" stroke="#222" stroke-width="1.5"/>
+                <line x1="41" y1="26" x2="40" y2="23" stroke="#222" stroke-width="1.5"/>
+                <line x1="56" y1="26" x2="55" y2="23" stroke="#222" stroke-width="1.5"/>
+                <line x1="59" y1="27" x2="61" y2="24" stroke="#222" stroke-width="1.5"/>
+                <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+                <path d="M44 44 Q50 48 56 44" stroke="#FFB300" stroke-width="1.5" fill="none"/>
+                <circle cx="34" cy="18" r="4" fill="#E53935"/>
+                <ellipse cx="26" cy="18" rx="8" ry="5" fill="#EF5350"/>
+                <ellipse cx="42" cy="18" rx="8" ry="5" fill="#EF5350"/>
+                <ellipse cx="26" cy="18" rx="6" ry="3.5" fill="#FF7043"/>
+                <ellipse cx="42" cy="18" rx="6" ry="3.5" fill="#FF7043"/>
+                <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+                <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+                <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+                <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+                <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#EF5350"/>
+                <rect x="55" y="58" width="7" height="16" rx="3" fill="#EF5350" transform="rotate(15 58 62)"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="penguin-footer">
+  <div class="footer-couple">
+    <div class="penguin-avatar large" style="transform: scaleX(-1);">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+        <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+        <circle cx="50" cy="36" r="24" fill="#222"/>
+        <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+        <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+        <circle cx="44" cy="33" r="3" fill="#111"/>
+        <circle cx="60" cy="33" r="3" fill="#111"/>
+        <circle cx="45" cy="31.5" r="1" fill="#fff"/>
+        <circle cx="61" cy="31.5" r="1" fill="#fff"/>
+        <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+        <ellipse cx="50" cy="20" rx="20" ry="8" fill="#1E88E5"/>
+        <rect x="30" y="14" width="40" height="8" rx="3" fill="#1E88E5"/>
+        <circle cx="50" cy="10" r="5" fill="#1565C0"/>
+        <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+        <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+        <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#42A5F5"/>
+      </svg>
+    </div>
+    <div class="footer-hearts">
+      <span>&#128152;</span>
+      <span>&#128150;</span>
+    </div>
+    <div class="penguin-avatar large">
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+        <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+        <circle cx="50" cy="36" r="24" fill="#222"/>
+        <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+        <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+        <circle cx="44" cy="33" r="3" fill="#111"/>
+        <circle cx="60" cy="33" r="3" fill="#111"/>
+        <circle cx="45" cy="31.5" r="1" fill="#fff"/>
+        <circle cx="61" cy="31.5" r="1" fill="#fff"/>
+        <line x1="38" y1="27" x2="36" y2="24" stroke="#222" stroke-width="1.5"/>
+        <line x1="41" y1="26" x2="40" y2="23" stroke="#222" stroke-width="1.5"/>
+        <line x1="56" y1="26" x2="55" y2="23" stroke="#222" stroke-width="1.5"/>
+        <line x1="59" y1="27" x2="61" y2="24" stroke="#222" stroke-width="1.5"/>
+        <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+        <path d="M44 44 Q50 48 56 44" stroke="#FFB300" stroke-width="1.5" fill="none"/>
+        <circle cx="34" cy="18" r="4" fill="#E53935"/>
+        <ellipse cx="26" cy="18" rx="8" ry="5" fill="#EF5350"/>
+        <ellipse cx="42" cy="18" rx="8" ry="5" fill="#EF5350"/>
+        <ellipse cx="26" cy="18" rx="6" ry="3.5" fill="#FF7043"/>
+        <ellipse cx="42" cy="18" rx="6" ry="3.5" fill="#FF7043"/>
+        <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+        <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+        <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+        <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#EF5350"/>
+        <rect x="55" y="58" width="7" height="16" rx="3" fill="#EF5350" transform="rotate(15 58 62)"/>
+      </svg>
+    </div>
+  </div>
+  <div class="footer-text">Waddle on together, Danny & Desi!</div>
+</div>
+
+<!-- Postcard Modal -->
+<div class="modal-overlay" id="postcardModal" onclick="closePostcard(event)">
+  <div class="postcard">
+    <div class="postcard-stamp">&#128150;</div>
+    <div class="postcard-header" id="postcardTitle">Postcard</div>
+    <div class="postcard-body" id="postcardBody">Memory goes here...</div>
+    <div class="postcard-penguins">
+      <div class="penguin-avatar small" style="transform: scaleX(-1);">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+          <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+          <circle cx="50" cy="36" r="24" fill="#222"/>
+          <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+          <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+          <circle cx="44" cy="33" r="3" fill="#111"/>
+          <circle cx="60" cy="33" r="3" fill="#111"/>
+          <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+          <ellipse cx="50" cy="20" rx="20" ry="8" fill="#1E88E5"/>
+          <rect x="30" y="14" width="40" height="8" rx="3" fill="#1E88E5"/>
+          <circle cx="50" cy="10" r="5" fill="#1565C0"/>
+          <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+          <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+          <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+          <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+          <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#42A5F5"/>
+        </svg>
+      </div>
+      <span style="font-size:1.2em;">&#128150;</span>
+      <div class="penguin-avatar small">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="78" rx="32" ry="36" fill="#222"/>
+          <ellipse cx="50" cy="80" rx="22" ry="28" fill="#fff"/>
+          <circle cx="50" cy="36" r="24" fill="#222"/>
+          <ellipse cx="42" cy="32" rx="6" ry="7" fill="#fff"/>
+          <ellipse cx="58" cy="32" rx="6" ry="7" fill="#fff"/>
+          <circle cx="44" cy="33" r="3" fill="#111"/>
+          <circle cx="60" cy="33" r="3" fill="#111"/>
+          <line x1="38" y1="27" x2="36" y2="24" stroke="#222" stroke-width="1.5"/>
+          <line x1="41" y1="26" x2="40" y2="23" stroke="#222" stroke-width="1.5"/>
+          <line x1="56" y1="26" x2="55" y2="23" stroke="#222" stroke-width="1.5"/>
+          <line x1="59" y1="27" x2="61" y2="24" stroke="#222" stroke-width="1.5"/>
+          <ellipse cx="50" cy="42" rx="7" ry="4" fill="#FFB300"/>
+          <circle cx="34" cy="18" r="4" fill="#E53935"/>
+          <ellipse cx="26" cy="18" rx="8" ry="5" fill="#EF5350"/>
+          <ellipse cx="42" cy="18" rx="8" ry="5" fill="#EF5350"/>
+          <ellipse cx="18" cy="72" rx="10" ry="20" fill="#222" transform="rotate(-15 18 72)"/>
+          <ellipse cx="82" cy="72" rx="10" ry="20" fill="#222" transform="rotate(15 82 72)"/>
+          <ellipse cx="38" cy="112" rx="12" ry="5" fill="#FFB300"/>
+          <ellipse cx="62" cy="112" rx="12" ry="5" fill="#FFB300"/>
+          <path d="M28 55 Q50 65 72 55 Q72 62 50 68 Q28 62 28 55Z" fill="#EF5350"/>
+        </svg>
+      </div>
+    </div>
+    <div class="postcard-footer">
+      <button class="postcard-close" onclick="closePostcard()">Close Postcard</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== MEMORIES DATA =====
+const memories = [
+  {
+    icon: '\uD83C\uDF05',
+    label: 'Sunset',
+    color: '#FFAB91',
+    title: 'The Sunset',
+    text: 'You, me, sunset?x \u2014 Our very first Hinge message. And look where that one little message took us.'
+  },
+  {
+    icon: '\uD83C\uDFCF',
+    label: 'Cricket',
+    color: '#A5D6A7',
+    title: 'The Cricket Match',
+    text: 'Playing cricket in the back garden in our matching Liverpool tops. Absolute scenes. You bowled me right over (literally and figuratively).'
+  },
+  {
+    icon: '\uD83D\uDC92',
+    label: 'The Wedding',
+    color: '#CE93D8',
+    title: 'The Wedding',
+    text: 'Attending your brother\u2019s wedding, all suited and booted and full of love. Watching you that day, I knew I was the luckiest lad in the room.'
+  },
+  {
+    icon: '\uD83D\uDC51',
+    label: 'Queen for the Day',
+    color: '#FFD54F',
+    title: 'Queen for the Day',
+    text: 'Desi\u2019s birthday marathon \u2014 spa, carvery, and bowling all in 48 hours. Nothing but the best for my queen.'
+  },
+  {
+    icon: '\uD83C\uDF84',
+    label: 'Christmas',
+    color: '#EF9A9A',
+    title: 'Our First Christmas',
+    text: 'Our first Christmas together with gorgeous gifts, decorations, and family time. The start of a tradition I never want to end.'
+  },
+  {
+    icon: '\u26F0\uFE0F',
+    label: 'Lake District',
+    color: '#81D4FA',
+    title: 'The Lake District',
+    text: 'Our 6-month anniversary spa getaway \u2014 hot tub on the balcony and walks in the snow-topped hills. Pure magic with you.'
+  }
+];
+
+// ===== SECRET PASSWORD =====
+const SECRET_CODE = '1208';
+
+// ===== BUILD MEMORIES MAP =====
+function buildMap() {
+  const grid = document.getElementById('mapGrid');
+  memories.forEach((mem, i) => {
+    const div = document.createElement('div');
+    div.className = 'map-icon';
+    div.style.setProperty('--delay', (i * 0.25) + 's');
+    div.onclick = () => openPostcard(mem);
+    div.innerHTML = `
+      <div class="icon-circle" style="background: ${mem.color};">${mem.icon}</div>
+      <div class="icon-label">${mem.label}</div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+// ===== TAB SWITCHING =====
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  const tabs = ['memories', 'igloo', 'secret'];
+  const btns = document.querySelectorAll('.tab-btn');
+  btns[tabs.indexOf(tab)].classList.add('active');
+}
+
+// ===== POSTCARD =====
+function openPostcard(mem) {
+  document.getElementById('postcardTitle').textContent = mem.title;
+  document.getElementById('postcardBody').textContent = mem.text;
+  document.getElementById('postcardModal').classList.add('show');
+}
+
+function closePostcard(e) {
+  if (!e || e.target === document.getElementById('postcardModal') || e.target.classList.contains('postcard-close')) {
+    document.getElementById('postcardModal').classList.remove('show');
+  }
+}
+
+// ===== HEART SHOWER =====
+function showerHearts() {
+  const hearts = ['\u2764\uFE0F', '\uD83E\uDE77', '\uD83D\uDC95', '\uD83D\uDC96', '\uD83D\uDC97', '\uD83D\uDC93', '\uD83D\uDC9E', '\uD83D\uDC98', '\uD83E\uDE79'];
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = (60 + Math.random() * 40) + 'vh';
+      heart.style.fontSize = (1.2 + Math.random() * 2) + 'em';
+      heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, i * 60);
+  }
+}
+
+// ===== DANCE PARTY =====
+function danceParty() {
+  const igloo = document.querySelector('.igloo-scene');
+  igloo.style.transition = 'background 0.3s ease';
+  const colors = [
+    'linear-gradient(180deg, #FF6B6B 0%, #FFE066 100%)',
+    'linear-gradient(180deg, #A855F7 0%, #EC4899 100%)',
+    'linear-gradient(180deg, #06B6D4 0%, #3B82F6 100%)',
+    'linear-gradient(180deg, #10B981 0%, #FBBF24 100%)',
+    'linear-gradient(180deg, #B3E5FC 0%, #E1F5FE 60%, #FFFFFF 100%)'
+  ];
+  let idx = 0;
+  const interval = setInterval(() => {
+    igloo.style.background = colors[idx % colors.length];
+    idx++;
+    if (idx >= 12) {
+      clearInterval(interval);
+      igloo.style.background = colors[colors.length - 1];
+    }
+  }, 300);
+}
+
+// ===== PENGUIN WAVE =====
+function penguinWave() {
+  for (let i = 0; i < 20; i++) {
+    setTimeout(() => {
+      const p = document.createElement('div');
+      p.className = 'floating-heart';
+      p.textContent = '\uD83D\uDC27';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.top = (60 + Math.random() * 40) + 'vh';
+      p.style.fontSize = (1.5 + Math.random() * 1.5) + 'em';
+      p.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 4500);
+    }, i * 100);
+  }
+}
+
+// ===== SECRET LOGIN =====
+function checkSecret() {
+  const input = document.getElementById('secretInput').value.trim();
+  const errorEl = document.getElementById('loginError');
+
+  if (input === SECRET_CODE) {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('missionSection').classList.add('show');
+    burstConfetti();
+    showerHearts();
+  } else {
+    errorEl.textContent = '> ACCESS DENIED. Invalid code. Try again, agent.';
+    document.getElementById('secretInput').value = '';
+    document.getElementById('secretInput').style.borderColor = '#FF5252';
+    setTimeout(() => {
+      document.getElementById('secretInput').style.borderColor = '#00BCD4';
+    }, 1500);
+  }
+}
+
+// ===== CONFETTI BURST =====
+function burstConfetti() {
+  const colors = ['#FF5252', '#FFD740', '#69F0AE', '#40C4FF', '#FF4081', '#E040FB', '#FFAB40'];
+  const shapes = ['\u2764\uFE0F', '\u2B50', '\u2728', '\uD83C\uDF89', '\uD83C\uDF8A', '\uD83D\uDC96'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      const isEmoji = Math.random() > 0.5;
+      if (isEmoji) {
+        piece.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+        piece.style.fontSize = (1 + Math.random() * 1.5) + 'em';
+      } else {
+        piece.style.width = (8 + Math.random() * 8) + 'px';
+        piece.style.height = (8 + Math.random() * 8) + 'px';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      }
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.top = '-20px';
+      piece.style.animationDuration = (2 + Math.random() * 3) + 's';
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 5000);
+    }, i * 40);
+  }
+}
+
+// ===== SNOWFALL =====
+function createSnowflakes() {
+  const flakes = ['\u2744\uFE0F', '\u2022', '\u25CF', '\u00B7'];
+  for (let i = 0; i < 30; i++) {
+    const flake = document.createElement('div');
+    flake.className = 'snowflake';
+    flake.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+    flake.style.left = Math.random() * 100 + 'vw';
+    flake.style.fontSize = (0.5 + Math.random() * 1) + 'em';
+    flake.style.opacity = 0.4 + Math.random() * 0.6;
+    flake.style.animationDuration = (5 + Math.random() * 10) + 's';
+    flake.style.animationDelay = Math.random() * 10 + 's';
+    document.body.appendChild(flake);
+  }
+}
+
+// ===== INIT =====
+buildMap();
+createSnowflakes();
+</script>
+</body>
+</html>
